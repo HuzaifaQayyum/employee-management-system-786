@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-const sgtransport = require('nodemailer-sendgrid-transport');
 
 
 const mailer = nodemailer.createTransport({

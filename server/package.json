@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "author": "Huzaifa Qayyum",
   "license": "ISC",
   "dependencies": {

@@ -3,7 +3,7 @@ import { ErrorService } from '../../../services/Error.service';
 import { MainService } from '../../../services/main.service';
 import { AdminService } from '../../../services/admin.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Supervisor } from '../../../models/supervisor.model';
+import { Supervisor } from '../../../models/Supervisor.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 

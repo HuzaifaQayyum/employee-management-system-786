@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification.service';
 import { SharedValidator } from '../../../shared.validator';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Supervisor } from '../../../models/supervisor.model';
+import { Supervisor } from '../../../models/Supervisor.model';
 import { MainService } from '../../../services/main.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';

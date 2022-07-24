@@ -1,27 +1,19 @@
 import { EntryNonPopulated } from './../models/Entry-nonPopulated.model';
 import { Entry } from './../models/Entry.model';
-import { AuthService } from './auth.service';
-import { User } from '../models/User.model';
 import { Supervisor } from '../models/Supervisor.model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
-import * as jwt_decode from 'jwt-decode';
+import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { environment } from '../../environments/environment';
+
 
 @Injectable({ providedIn: 'root' })
 export class MainService {
     private url = `${environment.serverUrl}/main`;
-    private _user: User;
 
-    get user(): User { return this._user; }
+    constructor(private http: HttpClient) { }
 
-    constructor(private injector: Injector, private http: HttpClient) { }
-
-    setUser(): void {
-        this._user = jwt_decode(this.injector.get(AuthService).token);
-    }
 
     fetchSupervisors(): Observable<Supervisor[]> {
         return this.http.get<Supervisor[]>(this.url + '/supervisors');

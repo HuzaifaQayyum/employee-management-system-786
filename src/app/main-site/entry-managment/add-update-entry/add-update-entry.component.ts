@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { Supervisor } from '../../../models/supervisor.model';
 import { MainService } from '../../../services/main.service';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/user.service';
 
 @Component({
     templateUrl: './add-update-entry.component.html',
@@ -28,10 +29,12 @@ export class AddUpdateEntryComponent implements OnInit {
     get from(): AbstractControl { return this.entryForm.get('from'); }
     get to(): AbstractControl { return this.entryForm.get('to'); }
 
-    constructor(private mainService: MainService, private notificationService: NotificationService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private mainService: MainService, 
+                private userService: UserService,
+                private notificationService: NotificationService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
-        this.isAdmin = this.mainService.user.admin;
+        this.isAdmin = this.userService.user.admin;
 
         this.mainService.fetchSupervisors().subscribe(supervisors => {
             this.supervisors = supervisors;

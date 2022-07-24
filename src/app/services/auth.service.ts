@@ -1,4 +1,4 @@
-import { MainService } from './main.service';
+import { UserService } from './user.service';
 import { User } from '../models/User.model';
 import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -23,7 +23,7 @@ export class AuthService {
     get authenticated(): boolean { return this._authenticated; }
     set authenticated(authenticated: boolean) { this._authenticated = authenticated; }
 
-    constructor(private mainService: MainService, private http: HttpClient, private router: Router) { }
+    constructor(private userService: UserService, private http: HttpClient, private router: Router) { }
 
     private changeServerMsg(msg: string, isError: boolean = false) {
         this.isServerError.next(isError); // must be on top
@@ -68,7 +68,9 @@ export class AuthService {
             const timeLeft = validTill - new Date().getTime();
             if (verified && timeLeft > 0) {
                 this.authenticated = true;
-                this.mainService.setUser();
+
+                this.userService.setUser(token);
+
                 setTimeout(_ => this.logoutUser, timeLeft);
                 this.router.navigate(['/home']);
                 return;

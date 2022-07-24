@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     });
 
     // Request for notification permission
-    this.requestNotificationPermission();
+    // this.requestNotificationPermission();
   }
 
   private urlBase64ToUint8Array(base64String): Uint8Array {

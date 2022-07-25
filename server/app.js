@@ -7,6 +7,8 @@ const socketIO = require('socket.io');
 const http = require('http');
 const cors = require('cors');
 const express = require('express');
+const joinPath = require('./util/join-path');
+
 
 const app = express();
 
@@ -16,6 +18,7 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 app.use(express.json());
+app.use(express.static(joinPath('../dist/excel-report')))
 app.use(cors({ origin: '*' }));
 
 app.use((req, res, next) => {

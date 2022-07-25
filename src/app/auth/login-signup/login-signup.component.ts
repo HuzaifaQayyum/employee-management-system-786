@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { SharedValidator } from '../../shared.validator';
 import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   templateUrl: './login-signup.component.html',
@@ -20,9 +21,13 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
   get email(): AbstractControl { return this.authForm.get('email'); }
   get password(): AbstractControl { return this.authForm.get('password'); }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.userService.user) {
+      alert(`For Admin\n\temail: admin@gmail.com\n\tpassword: 12345\nFor Supervisor\n\temail: user@gmail.com\n\tpassword: 12345`)
+    }
+
     this.authForm = new FormGroup({
       email: new FormControl('', [SharedValidator.required, SharedValidator.regex(/.@gmail\.com$/, 'Invalid gmail account.')]),
       password: new FormControl('', [Validators.minLength(5), Validators.required])

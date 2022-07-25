@@ -2,7 +2,7 @@
   "name": "employee-management",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng build --prod && cd server && node app",
+    "start": "cd server && node app",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  serverUrl: `http://localhost:4000/api`,
-  wsUrl: `ws://localhost:4000`
+  serverUrl: `https://employee-manegement.herokuapp.com/api`,
+  wsUrl: `ws://employee-manegement.herokuapp.com/`
 };

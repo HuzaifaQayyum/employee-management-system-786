@@ -24,9 +24,10 @@ export class LoginSignupComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (!this.userService.user) {
-      alert(`For Admin\n\temail: admin@gmail.com\n\tpassword: 12345\nFor Supervisor\n\temail: user@gmail.com\n\tpassword: 12345`)
-    }
+    // Temporary
+    if (!this.userService.user)
+      alert(`LOGIN Credentials\n\nFor Admin\n\temail: admin@gmail.com\n\tpassword: 12345\nFor Supervisor\n\temail: user@gmail.com\n\tpassword: 12345`)
+    // 
 
     this.authForm = new FormGroup({
       email: new FormControl('', [SharedValidator.required, SharedValidator.regex(/.@gmail\.com$/, 'Invalid gmail account.')]),

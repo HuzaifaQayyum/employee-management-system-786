@@ -30,7 +30,7 @@
                 <label for="remember-me">Remember me</label>
             </div>
 
-            <button class="sub-btn" type="submit" [disabled]="authForm.invalid"> {{ loginMode ? "Login" : "Create" }} </button>
+            <button class="sub-btn" type="submit" [disabled]="authForm.invalid || isFormSubmitted"> {{ loginMode ? "Login" : "Create" }}<span *ngIf="isFormSubmitted">...</span> </button>
         </form>
 
         <ul class="action-group">

@@ -1,7 +1,7 @@
 name: build and push docker images
 on:
   push:
-    branches: main
+    branches: master
   workflow_dispatch: 
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${{ secrets.SERVER_ENV_PROD }}" > server/.env
 
-      - name: build server images
+      - name: build images
         run: docker compose -f docker-compose.yml -f docker-compose.prod.yml build
 
       - name: login to docker hub

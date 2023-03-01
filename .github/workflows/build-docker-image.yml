@@ -1,7 +1,5 @@
 name: build docker images
 on:
-  push:
-    - main
   workflow_dispatch: 
 
 jobs:
@@ -14,4 +12,3 @@ jobs:
       - name: build images
         run: docker compose -f docker-compose.prod.yml build
 
-    

@@ -1,11 +1,11 @@
-name: build docker images
+name: build and push docker images
 on:
   push:
     - main
   workflow_dispatch: 
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: get code

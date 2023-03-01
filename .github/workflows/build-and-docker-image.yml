@@ -1,0 +1,27 @@
+name: build docker images
+on:
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+
+      - name: create server env file
+        run: |
+          echo "${{ secrets.SERVER_ENV_PROD }}" > server/.env
+
+      - name: build server images
+        run: docker compose -f docker-compose.prod.yml build
+
+      - name: login to docker hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: push docker images
+        run: docker compose -f docker-compose.prod.yml push
+

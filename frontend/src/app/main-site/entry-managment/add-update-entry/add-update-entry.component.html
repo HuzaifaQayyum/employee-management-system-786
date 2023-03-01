@@ -1,0 +1,66 @@
+<div *ngIf="isLoading then loading; else mainSection"></div>
+
+<ng-template #loading>
+    LOADING....
+</ng-template>
+
+<ng-template #mainSection>
+
+    <div *ngIf="supervisors.length >= 2 then EntryForm else NoEnoughEntriesError"></div>
+
+    <ng-template #EntryForm>
+        <h2 class="center">New Entry</h2>
+
+        <p class="server-msg error" *ngIf="serverMsg"> {{ serverMsg }} </p>
+
+
+        <form autocomplete="off" class="form-wrapper mob-full-width" [formGroup]="entryForm" (ngSubmit)="onFormSubmit()">
+            <div class="inputs-wrapper">
+                <div class="form-group">
+                    <label for="select-date" class="label">Select Date</label>
+                    <input type="date" class="form-item" id="select-date" formControlName="date">
+                    <p class="error" *ngIf="date.errors?.required && (formSubmitted || date.touched)">Date is required
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="no-of-hrs" class="label">No. of Hours</label>
+                    <input type="number" min="1" class="form-item" id="no-of-hrs" formControlName="noOfHrs">
+                    <ng-container *ngIf="noOfHrs.errors && (noOfHrs.touched || formSubmitted)">
+                        <p class="error" *ngIf="noOfHrs.errors.min"> Number of hours must be greater than 0.</p>
+                        <p class="error" *ngIf="!noOfHrs.errors.min && noOfHrs.errors.intError">
+                            {{ noOfHrs.errors.intError }} </p>
+                    </ng-container>
+                </div>
+                <div class="form-group">
+                    <label for="from-supervisor" class="label">From</label>
+                    <select class="form-item select" formControlName="from" (change)="onFromChange($event)">
+                        <option *ngFor="let supervisor of supervisors" [value]="supervisor._id"> {{ supervisor.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="to-supervisor" class="label">To</label>
+                    <select class="form-item select" formControlName="to">
+                        <ng-container *ngFor="let supervisor of supervisors">
+                            <option *ngIf="supervisor._id !== from.value" [value]="supervisor._id">
+                                {{ supervisor.name }}
+                            </option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-alert" *ngIf="isUpdating" (click)="setEntryFormDefaults()"
+                    type="button">Reset</button>
+                <button class="btn btn-primary" type="submit"> {{ isUpdating ? 'Update' : 'Submit' }} </button>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #NoEnoughEntriesError>
+        <p>Not enough supervisors for new entry. <button class="btn-add" *ngIf="isAdmin"
+                routerLink="/supervisors-managment/add">Add Supervisor</button></p>
+    </ng-template>
+
+</ng-template>

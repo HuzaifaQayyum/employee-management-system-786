@@ -1,0 +1,19 @@
+<h2 class="center"> {{ isEditing ? 'Update Supervisor' : 'Add Supervisor' }} </h2>
+
+<form class="form-wrapper" autocomplete="off" [class.invalid-form]="isFormSubmitted && supervisorForm.invalid" [formGroup]="supervisorForm" (ngSubmit)="onCreateUpdateSupervisor()">
+    <p class="server-msg error" *ngIf="serverMsg"> {{ serverMsg }} </p>
+    
+    <div class="form-group">
+        <label for="name" class="label">Name</label>
+        <div class="control-wrapper">
+            <input type="text" class="form-item" id="name" formControlName="name" autofocus>
+            <span class="error" *ngIf="name.errors?.required && (name.touched || isFormSubmitted)">Name is required</span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-alert" type="submit" (click)="resetSupervisorData()" type="button" *ngIf="isEditing" [disabled]="name.value === backupName">Reset</button>
+        <button class="btn btn-sub" type="submit" *ngIf="isEditing" [disabled]="name.value === backupName">Update</button>
+        <button class="btn btn-sub" type="submit" *ngIf="!isEditing" [disabled]="supervisorForm.invalid">Add</button>
+    </div>
+</form>

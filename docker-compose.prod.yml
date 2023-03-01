@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: huzaifaqayyum/employee-management-nginx:${NGINX_VERSION}-STAGING
+    build:
+      context: ./
+      dockerfile: nginx/Dockerfile.prod
+    ports:
+      - 443:443
+      - 80:80
+    depends_on:
+      - server
+  server:
+    image: huzaifaqayyum/employee-management-server:${SERVER_VERSION}-STAGING

@@ -1,0 +1,8 @@
+<div class="popup-wrapper" *ngIf="errors.length">
+    <div class="wrapper-card" *ngFor="let error of errors">
+        <p class="msg"><i class="fa fa-exclamation-triangle"></i> {{ error.msg }} </p>
+        <button class="btn-close" (click)="closeError(error._id)">OK</button>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

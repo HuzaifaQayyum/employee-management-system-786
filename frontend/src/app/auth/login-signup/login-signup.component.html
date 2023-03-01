@@ -1,0 +1,43 @@
+
+<div class="wrapper">
+    
+    <p class="server-msg" [class.error]="isServerError" *ngIf="serverMsg"> {{ serverMsg }} </p>
+
+    <div class="auth-card-wrapper">
+
+        <h2 class="form-title"> {{ loginMode ? "Login" : "Create account" }} </h2>
+
+        <form [formGroup]="authForm" (ngSubmit)="onLoginSignup()" autocomplete="on">
+
+            <div class="form-group">
+                <input type="email" placeholder="Enter email address" class="form-item" formControlName="email">
+                <ng-container *ngIf="email.errors && (email.touched || isFormSubmitted)">
+                    <span class="error" *ngIf="email.errors.required">Email is required</span>
+                    <span class="error" *ngIf="!email.errors.required && email.errors.regex"> {{ email.errors.regex }} </span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <input type="password" placeholder="Enter password" class="form-item" formControlName="password">
+                <ng-container *ngIf="password.errors && (password.touched || isFormSubmitted)">
+                    <span class="error" *ngIf="password.errors.required">password is required</span>
+                    <span class="error" *ngIf="password.errors.minlength">password must be atleast {{ password.errors.minlength.requiredLength }} characters long</span>
+                </ng-container>
+            </div>
+            
+            <div class="form-group check-box" *ngIf="loginMode">
+                <input type="checkbox" id="remember-me" [formControl]="rememberMe">
+                <label for="remember-me">Remember me</label>
+            </div>
+
+            <button class="sub-btn" type="submit" [disabled]="authForm.invalid || isFormSubmitted"> {{ loginMode ? "Login" : "Create" }}<span *ngIf="isFormSubmitted">...</span> </button>
+        </form>
+
+        <ul class="action-group">
+            <li class="action-item"> {{ loginMode ? "Don't have account?" : "Already have account?" }} <button
+                    (click)="loginMode = !loginMode" type="button">{{ loginMode ? "Signup" : "Login" }}</button> </li>
+            <li class="action-item" *ngIf="loginMode">Forgot password? <button routerLink="/auth/request-password-reset">Reset password</button></li>
+        </ul>
+
+    </div>
+</div>

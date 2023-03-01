@@ -1,0 +1,14 @@
+name: build docker images
+on:
+  push:
+    - main
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+
+      - name: build server image

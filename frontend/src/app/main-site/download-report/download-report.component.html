@@ -1,0 +1,18 @@
+<h2 class="center">Download Report</h2>
+<form autocomplete="off" class="form-wrapper mob-full-width" [formGroup]="reportForm" (ngSubmit)="onReportDownload()">
+    <div class="inputs-wrapper">
+        <div class="form-group">
+            <label for="from-date" class="label">From Date</label>
+            <input type="date" class="form-item" id="from-date" formControlName="from">
+            <div class="error" *ngIf="from.errors?.required && (from.touched || isFormSubmitted)">From field is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="to-date" class="label">To Date</label>
+            <input type="date" class="form-item" id="to-date" formControlName="to">
+            <div class="error" *ngIf="to.errors?.required && (to.touched || isFormSubmitted)">To field is required.</div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary"><i class="fa fa-file-download"></i> Download</button>
+
+</form>

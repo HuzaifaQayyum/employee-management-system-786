@@ -1,0 +1,149 @@
+.wrapper {
+  margin: auto;
+  margin-top: 15vh;
+  width: 30vw;
+}
+
+.auth-card-wrapper {
+  padding: 20px 30px 35px 30px;
+  border-radius: 5px;
+  /* background: #fff; */
+  animation: flip 0.7s ease-in;
+  transition: transform 0.3s ease-out;
+  box-shadow: 0 0 5px 1px #233;
+  background: linear-gradient(to right, #212, rgb(26, 36, 36));
+}
+
+@keyframes flip {
+  from {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  40% {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1)
+      translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  50% {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1)
+      translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  80% {
+    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95)
+      translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  to {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+}
+
+.form-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-item {
+  width: 100%;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  background: #efefef;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-item:focus {
+  background: #e5f1fa;
+  border-color: var(--secondary-color);
+}
+
+.sub-btn {
+  border-radius: 100px;
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+  background: #2a4365;
+  color: #fff;
+  transition: background-color 0.2s ease-out;
+}
+
+.sub-btn:disabled {
+  background: #2a4365;
+}
+
+.sub-btn:not(:disabled):hover {
+  background: #1f3452;
+}
+
+.info {
+  color: gray;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1200px) {
+    .wrapper {
+        width: 40vw;
+      }
+}
+
+@media only screen and (max-width: 900px) {
+    .wrapper {
+        width: 50vw;
+      }
+}
+
+@media only screen and (max-width: 800px) {
+    .wrapper {
+        width: 60vw;
+      }
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+      width: 80vw;
+      margin-top: 8vh;
+    }
+  
+    .auth-card-wrapper { 
+        padding: 10px 10px 15px 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+  .wrapper {
+    width: 90vw;
+    margin-top: 5vh;
+  }
+
+  .auth-card-wrapper { 
+      padding: 10px 10px 15px 10px;
+  }
+
+}

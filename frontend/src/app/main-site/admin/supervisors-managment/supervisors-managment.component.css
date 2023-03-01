@@ -1,0 +1,16 @@
+.supevisor-data th:first-child,
+.supevisor-data td:first-child { 
+    width: 40vw;
+}
+
+.clickable:hover i { 
+    color: var(--secondary-color);
+}
+
+.supevisor-data td:last-child {
+    color: #d15f5f;
+}
+
+.supevisor-data .clickable:last-child:hover i {
+    color: #d83030 !important;
+}

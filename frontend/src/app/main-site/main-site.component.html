@@ -1,0 +1,28 @@
+<app-notification></app-notification>
+
+<header>
+    <div class="navigation">
+        <button class="bar btn-transparent" (click)="toggleNavActive = !toggleNavActive" *ngIf="showNavBar"><i class="fa fa-bars"></i></button>
+        <h3>Employee Management</h3>
+    </div>
+    <div class="user-wrapper">
+        <button class="btn-transparent user-icon"><i class="fa fa-user"></i></button>
+        <ul class="user-dropdown">
+            <li class="user-dropdown-item"><button (click)="onLogout()"><i class="fa fa-sign-in-alt"></i> Logout</button></li>
+        </ul>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div class="side-nav" [class.active]="toggleNavActive">
+        <ul class="nav-wrapper" (click)="toggleNavActive = !toggleNavActive">
+            <li class="nav-item"><a routerLink="/entry-managment" routerLinkActive="active" class="nav-item-link"><i class="fa fa-database"></i> Entries</a></li>
+            <li class="nav-item"><a routerLink="/download-report" routerLinkActive="active" class="nav-item-link"><i class="fa fa-download"></i> Download report</a></li>
+            <li class="nav-item" *ngIf="user.admin"><a routerLink="/admin/supervisors-managment" routerLinkActive="active" class="nav-item-link"><i class="fa fa-user-cog"></i> Supervisors</a></li>
+            <li class="nav-item" *ngIf="user.admin"><a routerLink="/admin/accounts-management" routerLinkActive="active" class="nav-item-link"><i class="fa fa-user-cog"></i> Accounts Management</a></li>
+        </ul>
+    </div>
+    <div class="main-section">
+        <router-outlet></router-outlet>
+    </div>
+</div>

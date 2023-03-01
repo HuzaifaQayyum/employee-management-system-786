@@ -1,7 +1,0 @@
-<div class="notification-wrapper">
-    <div class="notification" *ngFor="let notification of notifications">
-        <button class="close-btn" (click)="closeNotification(notification._id)"><i class="fa fa-window-close"></i></button>
-        <h4 class="title" *ngIf="notification.title"> {{ notification.title }} </h4>
-        <p class="msg"> {{ notification.msg }} </p>
-    </div>
-</div>

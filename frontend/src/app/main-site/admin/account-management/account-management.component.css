@@ -1,0 +1,16 @@
+.accounts-data th:first-child,
+.accounts-data td:first-child { 
+    width: 20vw;
+}
+
+.clickable:hover i { 
+    color: var(--secondary-color);
+}
+
+.accounts-data td:last-child {
+    color: #d15f5f;
+}
+
+.accounts-data .clickable:last-child:hover i {
+    color: #d83030 !important;
+}

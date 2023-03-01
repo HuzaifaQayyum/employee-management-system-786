@@ -1,0 +1,27 @@
+<h2 class="center"> {{ isUpdating ? 'Update Account' : 'Add Account' }} </h2>
+
+<form class="form-wrapper" autocomplete="off" [class.invalid-form]="isFormSubmitted && accountForm.invalid" [formGroup]="accountForm" (ngSubmit)="onCreateUpdateAccount()">
+    <p class="server-msg error" *ngIf="serverMsg"> {{ serverMsg }} </p>
+    
+    <div class="form-group">
+        <label for="name" class="label">Email</label>
+        <div class="control-wrapper">
+            <input type="text" class="form-item" id="name" formControlName="email" autofocus>
+            <div class="error" *ngIf="email.errors && (email.touched || isFormSubmitted)">
+                <span *ngIf="email.errors.required">Email is required</span>
+                <span *ngIf="email.errors.regex && !email.errors.required"> {{ email.errors.regex }} </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group check-box">
+        <input type="checkbox" id="isAdmin" formControlName="isAdmin">
+        <label for="isAdmin">Is Admin</label>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-alert" type="submit" type="button" *ngIf="isUpdating" (click)="setFormDefault()">Reset</button>
+        <button class="btn btn-sub" type="submit" *ngIf="isUpdating" type="submit">Update</button>
+        <button class="btn btn-sub" type="submit" *ngIf="!isUpdating" [disabled]="accountForm.invalid">Add</button>
+    </div>
+</form>

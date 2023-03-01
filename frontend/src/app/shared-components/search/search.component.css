@@ -1,0 +1,22 @@
+.supervisor-form { 
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5vh;
+}
+
+.supervisor-form .form-group { 
+    width: 90%;
+}
+
+.form-item { 
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    width: 100%;
+    border: 2px solid transparent;
+    transition: border-color .2s ease-in;
+}
+
+.form-item:focus { 
+    border-color: var(--secondary-color);
+}

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    image: huzaifaqayyum/employee-management-nginx:${NGINX_VERSION}-STAGING
+    image: huzaifaqayyum/employee-management-nginx:latest
     build:
       context: ./
       dockerfile: nginx/Dockerfile.prod
@@ -12,4 +12,4 @@ services:
     depends_on:
       - server
   server:
-    image: huzaifaqayyum/employee-management-server:${SERVER_VERSION}-STAGING
+    image: huzaifaqayyum/employee-management-server:latest

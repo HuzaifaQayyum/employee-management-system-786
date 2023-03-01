@@ -14,7 +14,7 @@ jobs:
           echo "${{ secrets.SERVER_ENV_PROD }}" > server/.env
 
       - name: build server images
-        run: docker compose -f docker-compose.prod.yml build
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml build
 
       - name: login to docker hub
         uses: docker/login-action@v2
@@ -23,5 +23,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: push docker images
-        run: docker compose -f docker-compose.prod.yml push
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml push
 

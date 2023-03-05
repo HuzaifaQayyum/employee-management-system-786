@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    image: ${ REGISTRY }/employee-management-nginx:${ IMAGE_TAG }
+    image: ${REGISTRY}/employee-management-nginx:${ IMAGE_TAG }
     build:
       context: ./
       dockerfile: nginx/Dockerfile.prod
@@ -12,4 +12,4 @@ services:
     depends_on:
       - server
   server:
-    image: ${ REGISTRY }/employee-management-server:${ IMAGE_TAG }
+    image: ${REGISTRY}/employee-management-server:${ IMAGE_TAG }

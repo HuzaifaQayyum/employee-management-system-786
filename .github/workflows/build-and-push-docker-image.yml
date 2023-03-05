@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${{ secrets.SERVER_ENV_PROD }}" > server/.env
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::724440925429:role/aws-service-role/replication.ecr.amazonaws.com/AWSServiceRoleForECRReplication

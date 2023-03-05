@@ -15,14 +15,21 @@ jobs:
         run: |
           echo "${{ secrets.SERVER_ENV_PROD }}" > server/.env
 
-      - name: build images
-        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml build
-
-      - name: login to docker hub
-        uses: docker/login-action@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: build images
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: latest
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml build
 
       - name: push docker images
         run: docker compose -f docker-compose.yml -f docker-compose.prod.yml push

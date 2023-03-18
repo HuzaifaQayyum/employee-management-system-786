@@ -11,6 +11,7 @@ services:
     build:
       context: frontend
       dockerfile: Dockerfile
+    command: npx ng serve --configuration=development --port 80 --host 0.0.0.0
     volumes:
       - ./frontend:/app
       - /app/node_modules

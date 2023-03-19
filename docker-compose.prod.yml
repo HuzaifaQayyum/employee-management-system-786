@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    image: ${REGISTRY}/eemployee-management-system-nginx:${IMAGE_TAG}
+    image: ${REGISTRY}/employee-management-system-nginx:${IMAGE_TAG}
     build:
       context: ./
       dockerfile: nginx/Dockerfile.prod
